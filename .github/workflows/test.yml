@@ -1,0 +1,30 @@
+name: Test
+
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - uses: actions/cache@v4
+        with:
+          path: ./quickjs-2024-01-13
+          key: ${{ hashFiles('./quickjs-2024-01-13.tar.xz') }}
+      - uses: actions/cache@v4
+        with:
+          path: ./tmp/index.js
+          key: ${{ hashFiles('./index.jsx') }}
+      - uses: actions/cache@v4
+        with:
+          path: ./render
+          key: ${{ runner.os }}-${{ hashFiles('./index.jsx', './quickjs-2024-01-13/qjsc') }}
+      - run: npm ci
+      - run: ls -lh .
+      - run: npm test

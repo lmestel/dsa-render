@@ -1,0 +1,22 @@
+{
+  "name": "dsa-render",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Lukas Mestel",
+  "type": "module",
+  "scripts": {
+    "prepare": "make",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@kickstartds/ds-agency": "^3.6.23"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.2",
+    "preact": "^10.20.1",
+    "preact-render-to-string": "^6.4.1"
+  }
+}
